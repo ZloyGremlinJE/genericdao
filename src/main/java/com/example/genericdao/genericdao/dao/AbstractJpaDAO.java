@@ -5,8 +5,7 @@ import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class AbstractJpaDAO<T extends Serializable>  {
-
+public abstract class AbstractJpaDAO<T> {
     private Class<T> clazz;
 
     @PersistenceContext(unitName = "entityManagerFactory")
@@ -25,22 +24,18 @@ public abstract class AbstractJpaDAO<T extends Serializable>  {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public T create(final T entity) {
-
+    public void create(final T entity) {
         entityManager.persist(entity);
-        return entity;
     }
 
     public T update(final T entity) {
         return entityManager.merge(entity);
     }
 
-    public void delete(final T entity) {
-        entityManager.remove(entity);
-    }
-
     public void deleteById(final long entityId) {
         final T entity = findOne(entityId);
-        delete(entity);
+        if (entity != null) {
+            entityManager.remove(entity);
+        }
     }
 }

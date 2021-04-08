@@ -1,24 +1,46 @@
 package com.example.genericdao.genericdao.service;
 
-import com.example.genericdao.genericdao.dao.GenericDao;
+import com.example.genericdao.genericdao.dao.UserDAO;
 import com.example.genericdao.genericdao.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
-   public GenericDao<User> dao;
+    private UserDAO userDAO;
 
     @Autowired
-    public void setDao(GenericDao<User> daoToSet) {
-        dao = daoToSet;
-        dao.setClazz(User.class);
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
-@Override
-public User retrieveByName(String name) {
-    return null;
-}
 
+    @Override
+    public User findOne(long id) {
+        return userDAO.findOne(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDAO.findAll();
+    }
+
+    @Override
+    public void create(User entity) {
+        userDAO.create(entity);
+    }
+
+    @Override
+    public User update(User entity) {
+        return userDAO.update(entity);
+    }
+
+    @Override
+    public void deleteById(long entityId) {
+        userDAO.deleteById(entityId);
+    }
 }
