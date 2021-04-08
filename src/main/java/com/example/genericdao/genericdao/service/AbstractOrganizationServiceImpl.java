@@ -13,33 +13,33 @@ public class AbstractOrganizationServiceImpl implements AbstractOrganizationServ
     @Autowired
     AbstractOrganizationDAO dao;
 
-    @Override
-    public AbstractOrganization findOne(long id) {
-        return dao.findOne(id);
-    }
-
-    @Override
-    public List<AbstractOrganization> findAll() {
-        return dao.findAll();
-    }
-
-    @Override
-    public void create(AbstractOrganization entity) {
-        dao.create(entity);
-    }
-
-    @Override
-    public AbstractOrganization update(AbstractOrganization entity) {
-        return dao.update(entity);
-    }
-
-    @Override
-    public void delete(AbstractOrganization entity) {
-        dao.delete(entity);
-    }
-
-    @Override
-    public void deleteById(long entityId) {
-        dao.deleteById(entityId);
-    }
+//    @Override
+//    public AbstractOrganization findOne(long id) {
+//        return dao.findOne(id);
+//    }
+//
+//    @Override
+//    public List<AbstractOrganization> findAll() {
+//        return dao.findAll();
+//    }
+//
+//    @Override
+//    public void create(AbstractOrganization entity) {
+//        dao.create(entity);
+//    }
+//
+//    @Override
+//    public AbstractOrganization update(AbstractOrganization entity) {
+//        return dao.update(entity);
+//    }
+//
+//    @Override
+//    public void delete(AbstractOrganization entity) {
+//        dao.delete(entity);
+//    }
+//
+//    @Override
+//    public void deleteById(long entityId) {
+//        dao.deleteById(entityId);
+//    }
 }

@@ -1,16 +1,15 @@
 package com.example.genericdao.genericdao.dao;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-public abstract class AbstractJpaDAO<T extends Serializable> {
+public abstract class AbstractJpaDAO<T extends Serializable>  {
 
     private Class<T> clazz;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "entityManagerFactory")
     private EntityManager entityManager;
 
     public final void setClazz(final Class<T> clazzToSet) {
@@ -26,8 +25,10 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public void create(final T entity) {
+    public T create(final T entity) {
+
         entityManager.persist(entity);
+        return entity;
     }
 
     public T update(final T entity) {
