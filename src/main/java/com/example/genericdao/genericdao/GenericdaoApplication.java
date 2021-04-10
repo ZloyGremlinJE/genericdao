@@ -9,6 +9,7 @@ import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.AbstractOrganizationServiceImpl;
 import com.example.genericdao.genericdao.service.UserService;
 import com.example.genericdao.genericdao.service.UserServiceImpl;
+import com.example.genericdao.genericdao.service.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,9 @@ public class GenericdaoApplication {
 
     @Autowired
     AbstractOrganizationService organizationService;
+
+    @Autowired
+    EmailService emailService;
 
 
     public static void main(String[] args) {
@@ -72,6 +76,7 @@ public class GenericdaoApplication {
 
 
              organizationService.deleteById(organizations.get(0).getId());
+             emailService.email("zgjavapro@gmail.com","Тест","Вам письмо!");
 
         };
     }
