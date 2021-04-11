@@ -1,13 +1,14 @@
 package com.example.genericdao.genericdao.dao;
 
-import com.example.genericdao.genericdao.model.User;
+
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDAOImpl extends AbstractEntityDAOImpl<User> implements UserDAO {
-    public UserDAOImpl() {
+public class _AbstractOrganizationDAOImpl extends _AbstractJpaDAO<AbstractOrganization> implements _AbstractOrganizationDAO {
+    public _AbstractOrganizationDAOImpl() {
         super();
-        setClazz(User.class);
+        setClazz(AbstractOrganization.class);
     }
+
 }

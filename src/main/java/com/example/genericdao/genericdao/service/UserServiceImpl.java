@@ -1,6 +1,7 @@
 package com.example.genericdao.genericdao.service;
 
 import com.example.genericdao.genericdao.dao.UserDAO;
+import com.example.genericdao.genericdao.dao._UserDAO;
 import com.example.genericdao.genericdao.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findOne(long id) {
-        return userDAO.findOne(id);
+        return userDAO.findById(id);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User entity) {
-        userDAO.create(entity);
+        userDAO.save(entity);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(long entityId) {
-        userDAO.deleteById(entityId);
+        userDAO.removeById(entityId);
     }
 }

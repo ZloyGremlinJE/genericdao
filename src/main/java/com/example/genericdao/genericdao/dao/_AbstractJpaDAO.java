@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class AbstractJpaDAO<T> {
+public abstract class _AbstractJpaDAO<T> {
     private Class<T> clazz;
 
     @PersistenceContext(unitName = "entityManagerFactory")

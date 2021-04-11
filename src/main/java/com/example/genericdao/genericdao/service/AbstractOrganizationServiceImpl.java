@@ -1,7 +1,7 @@
 package com.example.genericdao.genericdao.service;
 
 import com.example.genericdao.genericdao.dao.AbstractOrganizationDAO;
-import com.example.genericdao.genericdao.dao.UserDAO;
+import com.example.genericdao.genericdao.dao._AbstractOrganizationDAO;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class AbstractOrganizationServiceImpl implements AbstractOrganizationServ
 
     @Override
     public AbstractOrganization findOne(long id) {
-        return organizationDAO.findOne(id);
+        return organizationDAO.findById(id);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AbstractOrganizationServiceImpl implements AbstractOrganizationServ
 
     @Override
     public void create(AbstractOrganization entity) {
-        organizationDAO.create(entity);
+        organizationDAO.save(entity);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AbstractOrganizationServiceImpl implements AbstractOrganizationServ
 
     @Override
     public void deleteById(long entityId) {
-        organizationDAO.deleteById(entityId);
+        organizationDAO.removeById(entityId);
 
     }
 }
