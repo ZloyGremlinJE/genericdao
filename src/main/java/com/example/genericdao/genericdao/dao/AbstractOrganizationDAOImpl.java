@@ -5,8 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AbstractOrganizationDAOImpl extends AbstractEntityDAOImpl<AbstractOrganization> implements AbstractOrganizationDAO {
-    public AbstractOrganizationDAOImpl() {
-        super();
-        setClazz(AbstractOrganization.class);
-    }
+
 }

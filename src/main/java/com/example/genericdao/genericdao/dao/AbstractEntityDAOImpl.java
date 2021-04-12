@@ -2,18 +2,18 @@ package com.example.genericdao.genericdao.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Transactional
 public abstract class AbstractEntityDAOImpl<T> implements AbstractEntityDAO<T> {
 
-    private Class<T> clazz;
+    private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+            .getActualTypeArguments()[0];
 
-    @PersistenceContext(unitName = "entityManagerFactory")
+    @PersistenceContext
     private EntityManager entityManager;
-
-    public final void setClazz(final Class<T> clazzToSet) {
-        this.clazz = clazzToSet;
-    }
 
     @Override
     public T findById(Long id) {
@@ -28,11 +28,7 @@ public abstract class AbstractEntityDAOImpl<T> implements AbstractEntityDAO<T> {
 
     @Override
     public void remove(T entity) {
-        if (entityManager.contains(entity)) {
-            entityManager.remove(entity);
-        } else {
-            entityManager.remove(entityManager.merge(entity));
-        }
+        entityManager.remove(entity);
     }
 
     @Override
@@ -45,7 +41,8 @@ public abstract class AbstractEntityDAOImpl<T> implements AbstractEntityDAO<T> {
 
     @Override
     public Boolean isExistById(Long id) {
-        return findById(id) != null;
+        long count = (long) entityManager.createQuery("SELECT COUNT(e) FROM " + clazz.getName() + " e WHERE e.id =: id").setParameter("id", id).getSingleResult();
+        return count > 0;
     }
 
     @Override

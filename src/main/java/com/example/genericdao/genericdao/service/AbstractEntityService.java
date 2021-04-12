@@ -1,8 +1,8 @@
-package com.example.genericdao.genericdao.dao;
+package com.example.genericdao.genericdao.service;
 
 import java.util.List;
 
-public interface AbstractEntityDAO<T> {
+public interface AbstractEntityService<T> {
     public T findById(Long id);
 
     public List<T> findAll();

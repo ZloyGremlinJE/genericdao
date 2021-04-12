@@ -1,16 +1,6 @@
 package com.example.genericdao.genericdao.service;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
-import java.util.List;
 
-public interface AbstractOrganizationService {
+public interface AbstractOrganizationService extends AbstractEntityService<AbstractOrganization>{
 
-    AbstractOrganization findOne(long id);
-
-    List<AbstractOrganization> findAll();
-
-    void create(AbstractOrganization entity);
-
-    AbstractOrganization update(AbstractOrganization entity);
-
-    void deleteById(long entityId);
 }
