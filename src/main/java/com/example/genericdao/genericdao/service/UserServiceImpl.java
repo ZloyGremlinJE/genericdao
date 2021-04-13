@@ -1,6 +1,6 @@
 package com.example.genericdao.genericdao.service;
 
-import com.example.genericdao.genericdao.dao.UserDAO;
+import com.example.genericdao.genericdao.dao.UserRepository;
 import com.example.genericdao.genericdao.model.User;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -9,10 +9,10 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserServiceImpl extends AbstractEntityServiceImpl<User>  implements UserService {
 
-    private final UserDAO userDAO;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDAO userDAO) {
-        super(userDAO);
-        this.userDAO = userDAO;
+    public UserServiceImpl(UserRepository userRepository) {
+        super(userRepository);
+        this.userRepository = userRepository;
     }
 }

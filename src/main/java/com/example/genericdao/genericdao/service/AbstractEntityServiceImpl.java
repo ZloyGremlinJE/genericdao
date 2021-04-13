@@ -1,48 +1,51 @@
 package com.example.genericdao.genericdao.service;
 
-import com.example.genericdao.genericdao.dao.AbstractEntityDAO;
+import com.example.genericdao.genericdao.dao.AbstractEntityRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-public class AbstractEntityServiceImpl<T> implements AbstractEntityService<T> {
-    private final AbstractEntityDAO<T> abstractEntityDAO;
 
-    public AbstractEntityServiceImpl(AbstractEntityDAO<T> abstractEntityDAO) {
-        this.abstractEntityDAO = abstractEntityDAO;
+@Transactional
+public class AbstractEntityServiceImpl<T> implements AbstractEntityService<T> {
+    private final AbstractEntityRepository<T> abstractEntityRepository;
+
+    public AbstractEntityServiceImpl(AbstractEntityRepository<T> abstractEntityRepository) {
+        this.abstractEntityRepository = abstractEntityRepository;
     }
 
     @Override
     public T findById(Long id) {
-        return abstractEntityDAO.findById(id);
+        return abstractEntityRepository.findById(id);
     }
 
     @Override
     public List findAll() {
-        return abstractEntityDAO.findAll();
+        return abstractEntityRepository.findAll();
     }
 
     @Override
     public void remove(T entity) {
-        abstractEntityDAO.remove(entity);
+        abstractEntityRepository.remove(entity);
     }
 
     @Override
     public void removeById(Long id) {
-        abstractEntityDAO.removeById(id);
+        abstractEntityRepository.removeById(id);
     }
 
     @Override
     public Boolean isExistById(Long id) {
-        return abstractEntityDAO.isExistById(id);
+        return abstractEntityRepository.isExistById(id);
     }
 
     @Override
     public void save(T entity) {
-        abstractEntityDAO.save(entity);
+        abstractEntityRepository.save(entity);
     }
 
     @Override
     public T update(T entity) {
-        return abstractEntityDAO.update(entity);
+        return abstractEntityRepository.update(entity);
     }
 }

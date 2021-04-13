@@ -6,8 +6,8 @@ import javax.transaction.Transactional;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Transactional
-public abstract class AbstractEntityDAOImpl<T> implements AbstractEntityDAO<T> {
+
+public abstract class AbstractEntityRepositoryImpl<T> implements AbstractEntityRepository<T> {
 
     private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
             .getActualTypeArguments()[0];

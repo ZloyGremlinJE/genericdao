@@ -2,7 +2,7 @@ package com.example.genericdao.genericdao.dao;
 
 import java.util.List;
 
-public interface AbstractEntityDAO<T> {
+public interface AbstractEntityRepository<T> {
     public T findById(Long id);
 
     public List<T> findAll();
