@@ -28,8 +28,8 @@ public class ServiceRequest {
 
     private String problem;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE
-            , CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE
+//            , CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "client_employee_id")
     private User customer;
 
