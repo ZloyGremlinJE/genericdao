@@ -1,6 +1,9 @@
 package com.example.genericdao.genericdao.model;
 
+import com.example.genericdao.genericdao.enums.RequestType;
+import com.example.genericdao.genericdao.enums.StatusRequestType;
 import com.example.genericdao.genericdao.model.organization.ClientOrganization;
+import com.example.genericdao.genericdao.model.organization.ServiceCenterOrganization;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,23 +25,28 @@ public class ServiceRequest {
     private long id;
 
     private String vehicleNumber;
+
     private LocalDate dateOfCreate;
 
     @Enumerated(EnumType.STRING)
     private RequestType requestType;
+
+    @Enumerated(EnumType.STRING)
+    private StatusRequestType statusRequestType;
 
     private String problem;
 
     @OneToOne
     private ClientOrganization clientOrganization;
 
-    public ClientOrganization getClientOrganization() {
-        return clientOrganization;
-    }
+    @OneToOne
+    private ServiceCenterOrganization serviceCenterOrganization;
 
-    public void setClientOrganization(ClientOrganization clientOrganization) {
-        this.clientOrganization = clientOrganization;
-    }
+    @OneToOne
+    private User service_manager;
+
+    @OneToOne
+    private User client_employee;
 
     @ManyToMany
     private List<User> engineers = new ArrayList<>();
