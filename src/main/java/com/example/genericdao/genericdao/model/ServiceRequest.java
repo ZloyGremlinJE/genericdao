@@ -1,5 +1,6 @@
 package com.example.genericdao.genericdao.model;
 
+import com.example.genericdao.genericdao.model.organization.ClientOrganization;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,10 +29,27 @@ public class ServiceRequest {
 
     private String problem;
 
-    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE
-//            , CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "client_employee_id")
-    private User customer;
+    @OneToOne
+    private ClientOrganization clientOrganization;
+
+    public ClientOrganization getClientOrganization() {
+        return clientOrganization;
+    }
+
+    public void setClientOrganization(ClientOrganization clientOrganization) {
+        this.clientOrganization = clientOrganization;
+    }
+
+    @ManyToMany
+    private List<User> engineers = new ArrayList<>();
+
+    public void addEngineer(User engineer) {
+        engineers.add(engineer);
+    }
+
+    public void removeEngineer(User engineer) {
+        engineers.remove(engineer);
+    }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "request")
     private List<EquipmentOrder> orders = new ArrayList<>();

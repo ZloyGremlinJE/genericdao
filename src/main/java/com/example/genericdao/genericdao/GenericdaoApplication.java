@@ -42,41 +42,47 @@ public class GenericdaoApplication {
         return args -> {
             System.out.println("Hello Generic");
 
-            User user1 = new User();
-            user1.setFirstName("Вася");
-            user1.setLastName("Пупкинг");
-            user1.setRole(Role.CLIENT_DIRECTOR);
+            User client_director = new User();
+            client_director.setFirstName("Директор клиента");
+            client_director.setLastName("Пупкинг");
+            client_director.setRole(Role.CLIENT_DIRECTOR);
 
+            User client_employee1 = new User();
+            client_employee1.setFirstName("Работник клиента 1");
+            client_employee1.setLastName("Клиента");
+            client_employee1.setRole(Role.CLIENT_EMPLOYEE);
 
+            User client_employee2 = new User();
+            client_employee2.setFirstName("Работник клиента 2");
+            client_employee2.setLastName("Армагеддонович");
+            client_employee2.setRole(Role.CLIENT_EMPLOYEE);
 
             User directorServiceCenter = new User();
-            directorServiceCenter.setFirstName("Директор");
+            directorServiceCenter.setFirstName("Директор сервиса");
             directorServiceCenter.setLastName("Сервиса");
             directorServiceCenter.setRole(Role.DIRECTOR);
-
-            User user3 = new User();
-            user3.setFirstName("Барбекю Сысой");
-            user3.setLastName("Армагеддонович");
-            user3.setRole(Role.CLIENT_EMPLOYEE);
 
             User engineer1 = new User();
             engineer1.setFirstName("Инженер1");
             engineer1.setLastName("Петрович");
             engineer1.setRole(Role.ENGINEER);
 
-
             User engineer2 = new User();
             engineer2.setFirstName("Инженер2");
             engineer2.setLastName("Васильич");
             engineer2.setRole(Role.ENGINEER);
 
-
-
+            User manager1 = new User();
+            manager1.setFirstName("Менеджер");
+            manager1.setLastName("Эффективыч");
+            manager1.setRole(Role.MANAGER);
 
             ClientOrganization clientOrg = new ClientOrganization();
             clientOrg.setName("Рога и Копыта");
-            clientOrg.addNewEmployee(user1);
-            clientOrg.addNewEmployee(user3);
+            clientOrg.addNewEmployee(client_director);
+            clientOrg.addNewEmployee(client_employee1);
+            clientOrg.addNewEmployee(client_employee2);
+            clientOrg.addNewEmployee(client_director);
             organizationService.save(clientOrg);
 
             ServiceCenterOrganization serviceCenterOrganization = new ServiceCenterOrganization();
@@ -87,7 +93,9 @@ public class GenericdaoApplication {
             organizationService.save(serviceCenterOrganization);
 
             ServiceRequest order1 = new ServiceRequest();
-            order1.setCustomer(engineer1);
+            order1.setClientOrganization(clientOrg);
+            order1.addEngineer(engineer1);
+            order1.addEngineer(engineer2);
             order1.setRequestType(RequestType.REQUEST_TYPE_1);
             order1.setDateOfCreate(LocalDate.of(2021,4,13));
             order1.setProblem("Кондей не пашет");
@@ -95,17 +103,13 @@ public class GenericdaoApplication {
             requestService.saveServiceRequest(order1);
 
             ServiceRequest order2 = new ServiceRequest();
-            order2.setCustomer(engineer2);
+            order2.setClientOrganization(clientOrg);
+            order2.addEngineer(engineer1);
             order2.setRequestType(RequestType.REQUEST_TYPE_2);
             order2.setDateOfCreate(LocalDate.of(2021,3,23));
             order2.setProblem("Кондей  опять не пашет");
             order2.setVehicleNumber("2");
             requestService.saveServiceRequest(order2);
-
-
-
-
-
 
         };
     }
