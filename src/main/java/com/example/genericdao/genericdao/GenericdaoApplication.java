@@ -6,11 +6,13 @@ import com.example.genericdao.genericdao.enums.StatusRequestType;
 import com.example.genericdao.genericdao.model.Role;
 import com.example.genericdao.genericdao.model.ServiceRequest;
 import com.example.genericdao.genericdao.model.User;
+import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
 import com.example.genericdao.genericdao.model.organization.ClientOrganization;
 import com.example.genericdao.genericdao.model.organization.ServiceCenterOrganization;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
+import com.example.genericdao.genericdao.service.util.ReportService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,13 +27,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.example.genericdao.genericdao")
+@Transactional
 public class GenericdaoApplication {
-     @PersistenceContext
-     EntityManager em;
+//     @PersistenceContext
+//     EntityManager em;
 
     @Autowired
     UserService userService;
@@ -41,6 +45,9 @@ public class GenericdaoApplication {
 
      @Autowired
     ServiceRequestService requestService;
+
+     @Autowired
+    ReportService reportService;
 
 
     public static void main(String[] args) {
@@ -85,6 +92,11 @@ public class GenericdaoApplication {
 //            engineer2.setLastName("Васильич");
 //            engineer2.setRole(Role.ENGINEER);
 //
+//            User engineer3 = new User();
+//            engineer3.setFirstName("Инженер3");
+//            engineer3.setLastName("Халявыч");
+//            engineer3.setRole(Role.ENGINEER);
+//
 //            User manager1 = new User();
 //            manager1.setFirstName("Менеджер");
 //            manager1.setLastName("Эффективыч");
@@ -103,6 +115,7 @@ public class GenericdaoApplication {
 //            serviceCenterOrganization.addNewEmployee(directorServiceCenter);
 //            serviceCenterOrganization.addNewEmployee(engineer1);
 //            serviceCenterOrganization.addNewEmployee(engineer2);
+//            serviceCenterOrganization.addNewEmployee(engineer3);
 //            organizationService.save(serviceCenterOrganization);
 //
 //            ServiceRequest order1 = new ServiceRequest();
@@ -128,12 +141,24 @@ public class GenericdaoApplication {
 //            order2.setVehicleNumber("2");
 //            requestService.saveServiceRequest(order2);
 
-            String queryString = "SELECT a FROM User a ";
-            Query query = em.createQuery(queryString);
 
 
-            List<User> users =  query.getResultList();
-            System.out.println(users);
+
+            AbstractOrganization sc_organization =  organizationService.findById(2L);
+            AbstractOrganization cl_organization =  organizationService.findById(1L);
+
+
+
+
+            User engineer = userService.findById(7L);
+
+
+            Long countSRbyEngineer= reportService.getCountServiceRequestByEngineer(engineer, sc_organization);
+            System.out.println(countSRbyEngineer);
+            Long countSRbyClientOrg = reportService.getCountServiceRequestByClientOrganization(cl_organization, sc_organization);
+            System.out.println(countSRbyClientOrg);
+            Long countAllSR = reportService.getCountAllServiceRequest(sc_organization);
+            System.out.println(countAllSR);
         };
     }
 

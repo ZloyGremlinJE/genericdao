@@ -1,10 +1,8 @@
 package com.example.genericdao.genericdao.service;
 
 import com.example.genericdao.genericdao.dao.AbstractEntityRepository;
-
 import javax.transaction.Transactional;
 import java.util.List;
-
 
 @Transactional
 public class AbstractEntityServiceImpl<T> implements AbstractEntityService<T> {
