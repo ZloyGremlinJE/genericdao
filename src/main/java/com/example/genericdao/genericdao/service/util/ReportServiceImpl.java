@@ -6,6 +6,7 @@ import com.example.genericdao.genericdao.model.organization.AbstractOrganization
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -27,5 +28,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Long getCountAllServiceRequest(AbstractOrganization sc_organization) {
         return reportRepository.getCountAllServiceRequest(sc_organization);
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return reportRepository.getAllUser();
     }
 }

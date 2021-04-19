@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class ReportRepositoryImpl implements ReportRepository {
@@ -68,5 +69,15 @@ public class ReportRepositoryImpl implements ReportRepository {
             return res;
         }
         return res;
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        String queryString = "from User";
+        Query query = em.createQuery(queryString);
+        query.setFirstResult(0);
+        query.setMaxResults(10);
+        List<User> userList = query.getResultList();
+         return userList;
     }
 }

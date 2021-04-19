@@ -1,34 +1,19 @@
 package com.example.genericdao.genericdao;
 
-import antlr.StringUtils;
-import com.example.genericdao.genericdao.enums.RequestType;
-import com.example.genericdao.genericdao.enums.StatusRequestType;
-import com.example.genericdao.genericdao.model.Role;
-import com.example.genericdao.genericdao.model.ServiceRequest;
 import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
-import com.example.genericdao.genericdao.model.organization.ClientOrganization;
-import com.example.genericdao.genericdao.model.organization.ServiceCenterOrganization;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
 import com.example.genericdao.genericdao.service.util.ReportService;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.orm.jpa.EntityManagerHolder;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.example.genericdao.genericdao")
@@ -150,7 +135,7 @@ public class GenericdaoApplication {
 
 
 
-            User engineer = userService.findById(7L);
+            User engineer = userService.findById(6L);
 
 
             Long countSRbyEngineer= reportService.getCountServiceRequestByEngineer(engineer, sc_organization);
@@ -159,6 +144,8 @@ public class GenericdaoApplication {
             System.out.println(countSRbyClientOrg);
             Long countAllSR = reportService.getCountAllServiceRequest(sc_organization);
             System.out.println(countAllSR);
+            List<User> userList = reportService.getAllUser();
+            System.out.println(userList.size());
         };
     }
 
