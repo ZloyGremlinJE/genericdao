@@ -1,11 +1,19 @@
 package com.example.genericdao.genericdao;
 
+import com.example.genericdao.genericdao.enums.RequestType;
+import com.example.genericdao.genericdao.enums.StatusRequestType;
+import com.example.genericdao.genericdao.model.Role;
+import com.example.genericdao.genericdao.model.ServiceRequest;
 import com.example.genericdao.genericdao.model.User;
-import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
+import com.example.genericdao.genericdao.model.organization.ClientOrganization;
+import com.example.genericdao.genericdao.model.organization.ServiceCenterOrganization;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
+import com.example.genericdao.genericdao.service.util.PaginationResult;
 import com.example.genericdao.genericdao.service.util.ReportService;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,14 +21,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.example.genericdao.genericdao")
 @Transactional
 public class GenericdaoApplication {
-//     @PersistenceContext
-//     EntityManager em;
+     @PersistenceContext
+     EntityManager em;
 
     @Autowired
     UserService userService;
@@ -101,6 +114,7 @@ public class GenericdaoApplication {
 //            serviceCenterOrganization.addNewEmployee(engineer1);
 //            serviceCenterOrganization.addNewEmployee(engineer2);
 //            serviceCenterOrganization.addNewEmployee(engineer3);
+//            serviceCenterOrganization.addNewEmployee(manager1);
 //            organizationService.save(serviceCenterOrganization);
 //
 //            ServiceRequest order1 = new ServiceRequest();
@@ -109,6 +123,8 @@ public class GenericdaoApplication {
 //            order1.setStatusRequestType(StatusRequestType.NEW);
 //            order1.addEngineer(engineer1);
 //            order1.addEngineer(engineer2);
+//            order1.setClient_employee(client_employee1);
+//            order1.setService_manager(manager1);
 //            order1.setRequestType(RequestType.REQUEST_TYPE_1);
 //            order1.setDateOfCreate(LocalDate.of(2021,4,13));
 //            order1.setProblem("Кондей не пашет");
@@ -120,6 +136,8 @@ public class GenericdaoApplication {
 //            order2.setServiceCenterOrganization(serviceCenterOrganization);
 //            order2.setStatusRequestType(StatusRequestType.IN_WORK);
 //            order2.addEngineer(engineer1);
+//            order2.setClient_employee(client_employee2);
+//            order2.setService_manager(manager1);
 //            order2.setRequestType(RequestType.REQUEST_TYPE_2);
 //            order2.setDateOfCreate(LocalDate.of(2021,3,23));
 //            order2.setProblem("Кондей  опять не пашет");
@@ -129,23 +147,47 @@ public class GenericdaoApplication {
 
 
 
-            AbstractOrganization sc_organization =  organizationService.findById(2L);
-            AbstractOrganization cl_organization =  organizationService.findById(1L);
+//            AbstractOrganization sc_organization =  organizationService.findById(2L);
+//            AbstractOrganization cl_organization =  organizationService.findById(1L);
+//
+//
+//
+//
+//            User engineer = userService.findById(6L);
+//
+//
+//            Long countSRbyEngineer= reportService.getCountServiceRequestByEngineer(engineer, sc_organization);
+//            System.out.println(countSRbyEngineer);
+//            Long countSRbyClientOrg = reportService.getCountServiceRequestByClientOrganization(cl_organization, sc_organization);
+//            System.out.println(countSRbyClientOrg);
+//            Long countAllSR = reportService.getCountAllServiceRequest(sc_organization);
+//            System.out.println(countAllSR);
+//            List<User> userList = reportService.getAllUser();
+//            System.out.println(userList.size());
+
+            String queryString = "from User";
+            Session session = em.unwrap(Session.class);
+            Query<User> query = session.createQuery(queryString, User.class);
+
+
+            int page = 2;
+            int maxResult = 5;
+            int maxNavigationResult = 3;
+
+            PaginationResult<User> result
+                    = new PaginationResult<>(query, page, maxResult, maxNavigationResult);
+
+            List<User> userList = result.getList();
+            int totalPages = result.getTotalPages();
+            int totalRecords = result.getTotalRecords();
+
+              //List<User>  res =  query.getResultList();
 
 
 
 
-            User engineer = userService.findById(6L);
-
-
-            Long countSRbyEngineer= reportService.getCountServiceRequestByEngineer(engineer, sc_organization);
-            System.out.println(countSRbyEngineer);
-            Long countSRbyClientOrg = reportService.getCountServiceRequestByClientOrganization(cl_organization, sc_organization);
-            System.out.println(countSRbyClientOrg);
-            Long countAllSR = reportService.getCountAllServiceRequest(sc_organization);
-            System.out.println(countAllSR);
-            List<User> userList = reportService.getAllUser();
             System.out.println(userList.size());
+
         };
     }
 

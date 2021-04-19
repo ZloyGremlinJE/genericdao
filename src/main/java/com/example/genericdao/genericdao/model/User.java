@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @NoArgsConstructor
 @Getter
@@ -30,4 +31,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "client_employee")
+    private Collection<ServiceRequest> serviceRequest;
+
+    public Collection<ServiceRequest> getServiceRequest() {
+        return serviceRequest;
+    }
+
+    public void setServiceRequest(Collection<ServiceRequest> serviceRequest) {
+        this.serviceRequest = serviceRequest;
+    }
 }
