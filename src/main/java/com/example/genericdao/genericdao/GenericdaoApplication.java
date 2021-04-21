@@ -1,19 +1,9 @@
 package com.example.genericdao.genericdao;
 
-import com.example.genericdao.genericdao.enums.RequestType;
-import com.example.genericdao.genericdao.enums.StatusRequestType;
-import com.example.genericdao.genericdao.model.Role;
-import com.example.genericdao.genericdao.model.ServiceRequest;
-import com.example.genericdao.genericdao.model.User;
-import com.example.genericdao.genericdao.model.organization.ClientOrganization;
-import com.example.genericdao.genericdao.model.organization.ServiceCenterOrganization;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
-import com.example.genericdao.genericdao.service.util.PaginationResult;
 import com.example.genericdao.genericdao.service.util.ReportService;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-
 import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.example.genericdao.genericdao")
 @Transactional
@@ -58,8 +44,8 @@ public class GenericdaoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-//            System.out.println("Hello Generic");
-//
+            System.out.println("Hello Generic");
+
 //            User client_director = new User();
 //            client_director.setFirstName("Директор клиента");
 //            client_director.setLastName("Пупкинг");
@@ -165,28 +151,39 @@ public class GenericdaoApplication {
 //            List<User> userList = reportService.getAllUser();
 //            System.out.println(userList.size());
 
-            String queryString = "from User";
-            Session session = em.unwrap(Session.class);
-            Query<User> query = session.createQuery(queryString, User.class);
+//            String queryString = "from User";
+//            Session session = em.unwrap(Session.class);
+//            Query<User> query = session.createQuery(queryString, User.class);
+//
+//
+//            int page = 2;
+//            int maxResult = 10;
+//            int maxNavigationResult = 3;
+//
+//            PaginationResult<User> result
+//                    = new PaginationResult<>(query, page, maxResult, maxNavigationResult);
+//
+//            List<User> userList = result.getList();
+//            int totalPages = result.getTotalPages();
+//            int totalRecords = result.getTotalRecords();
+//
+//              //List<User>  res =  query.getResultList();
+//
+//
+//
+//
+//            System.out.println(userList.size());
 
+//            String queryString = "select new com.example.genericdao.genericdao.model.reports.ServiceRequestInfo(sr.id, sr.dateOfCreate, sr.problem, sr.service_manager.id) " +
+//                    "from ServiceRequest sr  " +
+//                    "where sr.serviceCenterOrganization.id=:sc_organization_id ";
+//
+//            Query query = em.createQuery(queryString, ServiceRequestInfo.class);
+//
+//            query.setParameter("sc_organization_id", 2L);
+//
+//            List<ServiceRequestInfo> list = query.getResultList();
 
-            int page = 2;
-            int maxResult = 5;
-            int maxNavigationResult = 3;
-
-            PaginationResult<User> result
-                    = new PaginationResult<>(query, page, maxResult, maxNavigationResult);
-
-            List<User> userList = result.getList();
-            int totalPages = result.getTotalPages();
-            int totalRecords = result.getTotalRecords();
-
-              //List<User>  res =  query.getResultList();
-
-
-
-
-            System.out.println(userList.size());
 
         };
     }

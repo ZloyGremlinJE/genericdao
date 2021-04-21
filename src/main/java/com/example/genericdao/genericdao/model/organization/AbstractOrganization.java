@@ -24,6 +24,7 @@ public abstract class AbstractOrganization implements Serializable {
 
     private String name;
 
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
     private List<User> employees = new ArrayList<>();
 

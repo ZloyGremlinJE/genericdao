@@ -2,6 +2,7 @@ package com.example.genericdao.genericdao.dao;
 
 import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
+import com.example.genericdao.genericdao.model.reports.ServiceRequestInfo;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -72,12 +73,11 @@ public class ReportRepositoryImpl implements ReportRepository {
     }
 
     @Override
-    public List<User> getAllUser() {
-        String queryString = "from User";
-        Query query = em.createQuery(queryString);
-        query.setFirstResult(0);
-        query.setMaxResults(10);
-        List<User> userList = query.getResultList();
-         return userList;
+    public List<ServiceRequestInfo> getAllServiceRequests() {
+                    String queryString = "select new com.example.genericdao.genericdao.model.reports.ServiceRequestInfo(sr.id, sr.dateOfCreate, sr.problem, sr.service_manager.id) " +
+                    "from ServiceRequest sr  ";
+            Query query = em.createQuery(queryString, ServiceRequestInfo.class);
+            return query.getResultList();
     }
 }
+

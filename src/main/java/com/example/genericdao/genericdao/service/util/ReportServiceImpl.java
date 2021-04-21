@@ -3,6 +3,7 @@ package com.example.genericdao.genericdao.service.util;
 import com.example.genericdao.genericdao.dao.ReportRepository;
 import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
+import com.example.genericdao.genericdao.model.reports.ServiceRequestInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -31,7 +32,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<User> getAllUser() {
-        return reportRepository.getAllUser();
+    public List<ServiceRequestInfo> getAllServiceRequests() {
+      return   reportRepository.getAllServiceRequests();
     }
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 
 @NoArgsConstructor
@@ -23,6 +22,7 @@ public class User {
 
     private String firstName;
     private String lastName;
+
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE
             , CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.LAZY)
