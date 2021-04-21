@@ -32,7 +32,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ServiceRequestInfo> getAllServiceRequests() {
-      return   reportRepository.getAllServiceRequests();
+    public List<ServiceRequestInfo> getAllServiceRequests(String pageNumber) {
+      return   reportRepository.getAllServiceRequests(pageNumber);
     }
 }

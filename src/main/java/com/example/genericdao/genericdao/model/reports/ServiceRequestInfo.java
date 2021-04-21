@@ -1,9 +1,13 @@
 package com.example.genericdao.genericdao.model.reports;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+@Getter
+@Setter
 public class ServiceRequestInfo implements Serializable {
         private Long sr_id;
         private LocalDate dateOfCreate;

@@ -1,9 +1,11 @@
 package com.example.genericdao.genericdao;
 
+import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
 import com.example.genericdao.genericdao.service.util.ReportService;
+import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 
 @SpringBootApplication(scanBasePackages = "com.example.genericdao.genericdao")

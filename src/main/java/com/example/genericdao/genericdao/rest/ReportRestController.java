@@ -20,7 +20,7 @@ public class ReportRestController {
     private final ReportService reportService;
     @GetMapping("/allServiceRequests")
     public ResponseEntity<List<ServiceRequestInfo>> getAllServiceRequests(@RequestParam(required = false) String pageNumber) {
-       final List<ServiceRequestInfo> sr_infos = reportService.getAllServiceRequests();
+       final List<ServiceRequestInfo> sr_infos = reportService.getAllServiceRequests(pageNumber);
         return sr_infos != null
                 ? new ResponseEntity<>(sr_infos, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
