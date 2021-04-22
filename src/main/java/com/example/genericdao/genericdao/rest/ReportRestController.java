@@ -1,7 +1,7 @@
 package com.example.genericdao.genericdao.rest;
 
-import com.example.genericdao.genericdao.model.reports.ServiceRequestInfo;
-import com.example.genericdao.genericdao.service.util.ReportService;
+import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
+import com.example.genericdao.genericdao.service.reports.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,12 @@ import java.util.List;
 public class ReportRestController {
 
     private final ReportService reportService;
+
+
     @GetMapping("/allServiceRequests")
-    public ResponseEntity<List<ServiceRequestInfo>> getAllServiceRequests(@RequestParam(required = false) String pageNumber) {
-       final List<ServiceRequestInfo> sr_infos = reportService.getAllServiceRequests(pageNumber);
+    public ResponseEntity<?> getAllServiceRequests(@RequestParam("page") int page,  @RequestParam("size") int size) {
+
+       final List<ServiceRequestInfo> sr_infos = reportService.getAllServiceRequests(Integer.valueOf(page).toString());
         return sr_infos != null
                 ? new ResponseEntity<>(sr_infos, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);

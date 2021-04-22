@@ -1,4 +1,4 @@
-package com.example.genericdao.genericdao.model.reports;
+package com.example.genericdao.genericdao.reportsDTO;
 
 import lombok.Getter;
 import lombok.Setter;

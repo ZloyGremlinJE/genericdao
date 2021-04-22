@@ -2,14 +2,13 @@ package com.example.genericdao.genericdao.dao;
 
 import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
-import com.example.genericdao.genericdao.model.reports.ServiceRequestInfo;
-import com.example.genericdao.genericdao.service.util.PaginationResult;
+import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
+import com.example.genericdao.genericdao.service.pagination.PaginationResult;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import java.util.List;

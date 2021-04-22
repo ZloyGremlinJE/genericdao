@@ -1,4 +1,4 @@
-package com.example.genericdao.genericdao.service.util;
+package com.example.genericdao.genericdao.service.pagination;
 
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;

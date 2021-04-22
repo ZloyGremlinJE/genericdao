@@ -2,7 +2,7 @@ package com.example.genericdao.genericdao.dao;
 
 import com.example.genericdao.genericdao.model.User;
 import com.example.genericdao.genericdao.model.organization.AbstractOrganization;
-import com.example.genericdao.genericdao.model.reports.ServiceRequestInfo;
+import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
 
 import java.util.List;
 
