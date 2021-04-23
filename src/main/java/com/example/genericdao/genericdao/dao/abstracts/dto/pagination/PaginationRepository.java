@@ -1,4 +1,4 @@
-package com.example.genericdao.genericdao.dao.pagination;
+package com.example.genericdao.genericdao.dao.abstracts.dto.pagination;
 
 import java.util.List;
 import java.util.Map;

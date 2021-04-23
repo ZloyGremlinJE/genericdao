@@ -1,7 +1,7 @@
 package com.example.genericdao.genericdao.service.pagination;
 
 import com.example.genericdao.genericdao.model.pagination.PageDto;
-import com.example.genericdao.genericdao.dao.pagination.PaginationRepository;
+import com.example.genericdao.genericdao.dao.abstracts.dto.pagination.PaginationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;

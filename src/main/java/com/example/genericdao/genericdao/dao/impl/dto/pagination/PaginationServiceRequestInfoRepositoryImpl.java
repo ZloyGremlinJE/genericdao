@@ -1,5 +1,6 @@
-package com.example.genericdao.genericdao.dao.pagination;
+package com.example.genericdao.genericdao.dao.impl.dto.pagination;
 
+import com.example.genericdao.genericdao.dao.abstracts.dto.pagination.PaginationRepository;
 import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository(value = "PaginationServiceRequestInfo")
-public class PaginationServiceRequestInfoRepositoryImpl implements PaginationRepository<ServiceRequestInfo>{
+public class PaginationServiceRequestInfoRepositoryImpl implements PaginationRepository<ServiceRequestInfo> {
 
     @PersistenceContext
     private EntityManager em;
