@@ -1,28 +1,23 @@
-package com.example.genericdao.genericdao.service.abstracts;
+package com.example.genericdao.genericdao.service.reportsService;
 
 import com.example.genericdao.genericdao.model.pagination.PageDto;
 import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
 import com.example.genericdao.genericdao.service.pagination.PaginationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@RequiredArgsConstructor
 @Service
 public class ReportServiceRequestServiceImpl implements ReportServiceRequestService {
 
     private final PaginationService<ServiceRequestInfo,Object> paginationService;
 
-    @Autowired
-    public ReportServiceRequestServiceImpl(PaginationService<ServiceRequestInfo,Object> paginationService)  {
-        this.paginationService = paginationService;
-    }
-
 
     @Override
-    public PageDto<ServiceRequestInfo, Object> getPageAllServiceRequestInfo(int page, int size) {
-        return paginationService.getPageDto("PaginationServiceRequestInfo",setPaginationParameters(page, size));
+    public PageDto<ServiceRequestInfo> getPageAllServiceRequestInfo(int page, int size) {
+        return paginationService.getPageDto("PaginationServiceRequestInfoDao",setPaginationParameters(page, size));
     }
 
 

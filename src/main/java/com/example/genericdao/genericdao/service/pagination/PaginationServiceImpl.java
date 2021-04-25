@@ -1,20 +1,20 @@
 package com.example.genericdao.genericdao.service.pagination;
 
 import com.example.genericdao.genericdao.model.pagination.PageDto;
-import com.example.genericdao.genericdao.dao.abstracts.dto.pagination.PaginationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.genericdao.genericdao.dao.pagination.PaginationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 
+@RequiredArgsConstructor
 @Service
 public class PaginationServiceImpl<T, V> implements PaginationService<T, V>{
 
-    @Autowired
-    private Map<String, PaginationRepository<T>> pageBean;
+    private final Map<String, PaginationRepository<T>> pageBean;
 
     @Override
-    public PageDto<T, V> getPageDto(String methodName, Map<String, Object> parameters) {
-        PageDto<T, V> pageDto = new PageDto<>();
+    public PageDto<T> getPageDto(String methodName, Map<String, Object> parameters) {
+        PageDto<T> pageDto = new PageDto<>();
         PaginationRepository<T> paginationDaoBean = pageBean.get(methodName);
 
         int totalResultCount = paginationDaoBean.getCount(parameters);

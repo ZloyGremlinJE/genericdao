@@ -6,5 +6,5 @@ import com.example.genericdao.genericdao.model.pagination.PageDto;
 import java.util.Map;
 
 public interface PaginationService<T, V> {
-    PageDto<T, V> getPageDto(String methodName, Map<String, Object> parameters);
+    PageDto<T> getPageDto(String methodName, Map<String, Object> parameters);
 }

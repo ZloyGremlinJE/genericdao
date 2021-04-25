@@ -1,6 +1,6 @@
-package com.example.genericdao.genericdao.dao.impl.dto.pagination;
+package com.example.genericdao.genericdao.dao.reportsDao;
 
-import com.example.genericdao.genericdao.dao.abstracts.dto.pagination.PaginationRepository;
+import com.example.genericdao.genericdao.dao.pagination.PaginationRepository;
 import com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Map;
 
-@Repository(value = "PaginationServiceRequestInfo")
+@Repository(value = "PaginationServiceRequestInfoDao")
 public class PaginationServiceRequestInfoRepositoryImpl implements PaginationRepository<ServiceRequestInfo> {
 
     @PersistenceContext
@@ -27,15 +27,13 @@ public class PaginationServiceRequestInfoRepositoryImpl implements PaginationRep
                 .setMaxResults(size)
                 .getResultList();
 
-        List<ServiceRequestInfo> result = em.createQuery(
+        return (List<ServiceRequestInfo>) em.createQuery(
                 "select new com.example.genericdao.genericdao.reportsDTO.ServiceRequestInfo(sr.id, sr.dateOfCreate, sr.problem, sr.service_manager.id) " +
                         "from ServiceRequest sr " +
                         "where sr.id in (:ids) " +
                         "order by sr.id")
                 .setParameter("ids", serviceRequestsIds)
                 .getResultList();
-
-        return result;
     }
 
     @Override

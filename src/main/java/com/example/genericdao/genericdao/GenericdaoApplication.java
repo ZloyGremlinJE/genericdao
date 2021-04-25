@@ -3,7 +3,6 @@ package com.example.genericdao.genericdao;
 import com.example.genericdao.genericdao.service.AbstractOrganizationService;
 import com.example.genericdao.genericdao.service.ServiceRequestService;
 import com.example.genericdao.genericdao.service.UserService;
-import com.example.genericdao.genericdao.service.reports.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,8 +29,7 @@ public class GenericdaoApplication {
      @Autowired
     ServiceRequestService requestService;
 
-     @Autowired
-    ReportService reportService;
+
 
 
     public static void main(String[] args) {

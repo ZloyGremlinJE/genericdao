@@ -13,12 +13,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageDto<T, V> implements Serializable {
+public class PageDto<T> implements Serializable {
     private int currentPageNumber;
     private int totalPageCount;
     private int totalResultCount;
     private List<T> items;
-    private List<V> meta;
     private int itemsOnPage = 12;
 
     @Override
@@ -28,7 +27,6 @@ public class PageDto<T, V> implements Serializable {
                 ", totalPageCount=" + totalPageCount +
                 ", totalResultCount=" + totalResultCount +
                 ", items=" + items +
-                ", meta=" + meta +
                 ", itemsOnPage=" + itemsOnPage +
                 '}';
     }
