@@ -1,44 +1,27 @@
 package com.example.genericdao.genericdao;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-//        Integer a =  1000;
-//        Integer b =  0;
-//        //b = (Object) a;
-//        System.out.println(b);
-//        a = 1001;
-//        System.out.println(b);
-//
-//        Test t1 = new Test();
-//        t1.f = 10;
-//
-//
-//        Test t2 = new Test();
-//
-//        t2 = t1;
-//        System.out.println(t2.f);
-//
-//        t1.f = 20;
-//
-//        System.out.println(t2.f);
-
-        ArrayList<String> list = new ArrayList<>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("D");
-        System.out.println(list.size());
-        list.remove(0);
-        System.out.println(list.size());
+        Map<Key,Integer> map = new HashMap<>();
+        map.put(new Key("vaibhav1"), 20);
+        map.put(new Key("vaibhav2"), 40);
+        map.put(new Key("vaibhav3"), 41);
+        map.put(new Key("vaibhav4"), 42);
+        map.put(new Key("vaibhav5"), 43);
+        map.put(new Key("vaibhav6"), 44);
+        map.put(new Key("vaibhav7"), 45);
+        map.put(new Key("vaibhav8"), 46);
+        map.put(new Key("vaibhav9"), 47);
+        map.put(new Key("vaibhav10"), 48);
+        map.put(new Key("vaibhav11"), 49);
+        map.put(new Key("vaibhav12"), 50);
+        map.put(new Key("vaibhav13"), 51);
     }
 
-
-    static class Test{
-        public Integer f ;
-    }
 
 }
+
+
